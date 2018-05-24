@@ -3,25 +3,66 @@ const data = [
       company: 'Cobra, Inc',
       status: 'Pending',
       source: 'Joseph Saddler',
-      details: '1 these are some details that will show up in the modal'
+      details: {
+        description: 'first row',
+        employees: 25,
+        contact: {
+          address: '123 Johnson Rd',
+          phone: 1231231231,
+        }
+      }
     },
     {
       company: 'Cyberdyne Systems, LLC',
       status: 'Pending',
       source: 'John Connor',
-      details: 'dogs are cool'
+      details: {
+        description: 'dogs are cool',
+        employees: 50,
+        contact: {
+          address: '123 Johnson Rd',
+          phone: 1231231231,
+        }
+      }
     },
     {
       company: 'Cloudera',
       status: 'Pending',
       source: 'John Connor',
-      details: '3 these are some details that will show up in the modal'
+      details: {
+        description: '3 these are some details that will show up in the modal',
+        employees: 140,
+        contact: {
+          address: '123 Johnson Rd',
+          phone: 1231231231,
+        }
+      }
     },
     {
       company: 'Amazon',
       status: 'Big',
       source: 'Bezos',
-      details: 'filled with zombies'
+      details: {
+        description: 'full of zombies',
+        employees: 10000000,
+        contact: {
+          address: '123 Johnson Rd',
+          phone: 1231231231,
+        }
+      }
+    },
+    {
+      company: 'Googles',
+      status: 'Confirmed',
+      source: 'Batman',
+      details: {
+        description: 'silicon valley giant',
+        employees: 2,
+        contact: {
+          address: '123 Johnson Rd',
+          phone: 1231231231,
+        }
+      }
     }
 ];
 
@@ -76,7 +117,7 @@ function createDataRows(array) {
     const details = createDetailsCell(array[i].details, i);
     row.append(company, status, source, details);
     spacer.append(createCell(''), createCell(''), createCell(''), createCell(''));
-    tableBody.append(row);
+    tableBody.append(row, spacer);
   }
 }
 
@@ -85,25 +126,24 @@ function createCell(str) {
   return retEle;
 }
 
-function createDetailsCell(str, index) {
+function createDetailsCell(obj, index) {
   console.log(index);
   const modalId = `modal${index}`;
-  createDetailsModal(str, index);
+  createDetailsModal(obj, index);
   const retEle = $('<td>').attr('id', 'custom-td');
   const anchor = $('<a>').addClass('show-modal').attr('href', `#${modalId}`).append('Details');
   retEle.append(anchor);
   return retEle;
 }
 
-const body = $('#body');
 
-function createDetailsModal(str, index) {
+function createDetailsModal(obj, index) {
   //create the html of the modal and append to the body of the dom
 
   const overlay = $('<div>').addClass('overlay').attr('id', `overlay${index}`);
   const modal = $('<div>').addClass('modal').attr('id', `modal${index}`);
   const close = $('<div>').addClass('close').append('<span>X</span>');
-  const content = $('<div>').addClass('modal-content').append(`<p>${str}</p>`);
+  const content = $('<div>').addClass('modal-content').append(`<p>${obj.description}</p><p>Employees: ${obj.employees}</p>`);
   modal.append(close, content);
   overlay.append(modal);
   $('#my-table').append(overlay);

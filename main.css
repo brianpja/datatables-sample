@@ -30,10 +30,10 @@ body {
 }
 
 #custom-tbody {
-  display: flex;
+  /* display: flex;
   flex-direction: column;
-  justify-content: space-between;
-  height: 175px;
+  justify-content: space-between; */
+  height: 250px;
   width: 752px;
 }
 
@@ -72,7 +72,7 @@ body {
 }
 
 .overlay {
-  display: none; /* comment this line out when styling :) */ 
+  display: none; /* comment this line out when styling :) */
   position: fixed;
   top: 0;
   left: 0;
