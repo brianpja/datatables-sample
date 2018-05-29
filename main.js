@@ -63,6 +63,97 @@ const data = [
           phone: 1231231231,
         }
       }
+    },
+    {
+      company: 'Googles',
+      status: 'Confirmed',
+      source: 'Batman',
+      details: {
+        description: 'silicon valley giant',
+        employees: 2,
+        contact: {
+          address: '123 Johnson Rd',
+          phone: 1231231231,
+        }
+      }
+    },
+    {
+      company: 'Cobra, Inc',
+      status: 'Pending',
+      source: 'Joseph Saddler',
+      details: {
+        description: 'first row',
+        employees: 25,
+        contact: {
+          address: '123 Johnson Rd',
+          phone: 1231231231,
+        }
+      }
+    },
+    {
+      company: 'Cyberdyne Systems, LLC',
+      status: 'Pending',
+      source: 'John Connor',
+      details: {
+        description: 'dogs are cool',
+        employees: 50,
+        contact: {
+          address: '123 Johnson Rd',
+          phone: 1231231231,
+        }
+      }
+    },
+    {
+      company: 'Cloudera',
+      status: 'Pending',
+      source: 'John Connor',
+      details: {
+        description: '3 these are some details that will show up in the modal',
+        employees: 140,
+        contact: {
+          address: '123 Johnson Rd',
+          phone: 1231231231,
+        }
+      }
+    },
+    {
+      company: 'Amazon',
+      status: 'Big',
+      source: 'Bezos',
+      details: {
+        description: 'full of zombies',
+        employees: 10000000,
+        contact: {
+          address: '123 Johnson Rd',
+          phone: 1231231231,
+        }
+      }
+    },
+    {
+      company: 'Googles',
+      status: 'Confirmed',
+      source: 'Batman',
+      details: {
+        description: 'silicon valley giant',
+        employees: 2,
+        contact: {
+          address: '123 Johnson Rd',
+          phone: 1231231231,
+        }
+      }
+    },
+    {
+      company: 'Googles',
+      status: 'Confirmed',
+      source: 'Batman',
+      details: {
+        description: 'silicon valley giant',
+        employees: 2,
+        contact: {
+          address: '123 Johnson Rd',
+          phone: 1231231231,
+        }
+      }
     }
 ];
 
@@ -74,10 +165,10 @@ createDataRows(data);
 
 
 const table = $('#my-table').DataTable({
-      "paging": false,
+      "paging": true,
       "ordering": false,
       "info": false,
-      "searching": false,
+      "searching": true,
       headerCallback: function( thead, data, start, end, display ) {
         $(thead).find('th').attr('id', 'custom-th');
       },
@@ -139,7 +230,8 @@ function createDetailsCell(obj, index) {
 
 function createDetailsModal(obj, index) {
   //create the html of the modal and append to the body of the dom
-
+  // console.log(index)
+  // console.log(obj)
   const overlay = $('<div>').addClass('overlay').attr('id', `overlay${index}`);
   const modal = $('<div>').addClass('modal').attr('id', `modal${index}`);
   const close = $('<div>').addClass('close').append('<span>X</span>');
@@ -159,8 +251,12 @@ var $modal = $('.modal'),
 /*show modal and set dimensions based on window */
 $showModal.on('click', function(e){
   e.preventDefault();
-  console.log(e.target);
-  const index = e.target.href.slice(-1);
+  console.log('clicking')
+  console.log(e.target.href);
+  console.log(e.target.href.indexOf('#modal'))
+  const stringIndex = e.target.href.indexOf('#modal')
+  const index = e.target.href.slice(stringIndex + 6);
+
   console.log(index);
 
   const overlay = $(`#overlay${index}`);
